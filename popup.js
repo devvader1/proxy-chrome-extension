@@ -37,6 +37,8 @@ function resetProxy() {
 
 const fetchURL = 'https://private-16d939-codingchallenge2020.apiary-mock.com/locations';
 const availableConnectionDiv = document.getElementById('available-connection-section');
+const connectedLocationSection = document.getElementById('connected-location-section');
+
 
 const resetButton = document.createElement('button');
 resetButton.innerText = 'RESET PROXY SETTINGS';
@@ -55,8 +57,6 @@ refreshButton.addEventListener('click', () => {
 })
 
 availableConnectionDiv.append(refreshButton);
-
-
 
 
 const fetchServerData = (url) => fetchXMLData(url)
@@ -79,15 +79,33 @@ const fetchServerData = (url) => fetchXMLData(url)
             const serverList = document.createElement('ul');
 
             for (const server of servers) {
+                let connected;
 
                 const ip = server.getAttribute('ip');
                 const serverIPDiv = document.createElement('li');
                 const button = document.createElement('button');
                 button.innerText = 'CONNECT';
-                button.addEventListener('click', () => {
+                const connectFunction = () => {
                     setProxy(ip);
+                }
+                const disconnectFunction = () => {
+                    resetProxy();
+                }
 
-                })
+                button.addEventListener('click', () => {
+                    if (!connected) {
+                        connectFunction();
+                        connected = true;
+                        button.innerText = 'DISCONNECT';
+                        connectedLocationSection.innerText = locationName;
+                    } else {
+                        disconnectFunction();
+                        connected = false;
+                        button.innerText = 'CONNECT';
+                        connectedLocationSection.innerText = 'Not connected to any location';
+                    }
+                });
+
                 serverIPDiv.innerText = ip;
                 serverIPDiv.appendChild(button);
                 serverList.appendChild(serverIPDiv);
