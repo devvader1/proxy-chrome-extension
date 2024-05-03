@@ -1,9 +1,27 @@
 {
   "name": "Hello Extensions",
   "permissions": [
-    "proxy"
+    "proxy",
+    "scripting",
+    "activeTab"
   ],
   "description": "Base Level Extension",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
   "version": "1.0",
   "manifest_version": 3,
   "action": {
