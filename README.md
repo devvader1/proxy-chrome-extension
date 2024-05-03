@@ -4,4 +4,6 @@
 
 ### Hover over input on `http` site
 
-https://raw.githubusercontent.com/devvader1/proxy-chrome-extension/main/unsecure.png
+
+![alt text](https://raw.githubusercontent.com/devvader1/proxy-chrome-extension/main/unsecure.png)
+
