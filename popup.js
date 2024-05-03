@@ -39,7 +39,6 @@ const fetchURL = 'https://private-16d939-codingchallenge2020.apiary-mock.com/loc
 const availableConnectionDiv = document.getElementById('available-connection-section');
 const connectedLocationSection = document.getElementById('connected-location-section');
 
-
 const resetButton = document.createElement('button');
 resetButton.innerText = 'RESET PROXY SETTINGS';
 resetButton.addEventListener('click', () => {
