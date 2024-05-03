@@ -1,24 +1,24 @@
 console.log('This is a popup!');
 
+import { fetchXMLData } from "./fetchData.js";
+
 function setProxy(IPAddress) {
-    console.log(IPAddress.toString());
 
     const config = {
-        mode: "system",
+        mode: "fixed_servers",
         rules: {
             singleProxy: {
-                scheme: "https",
+                // use socks5 protocol
+                scheme: "socks5",
                 host: IPAddress.toString(),
-                port: 8080
             },
-            bypassList: ["foobar.com"]
         }
     };
 
     chrome.proxy.settings.set(
         { value: config, scope: "regular" },
         () => {
-            console.log($`Proxy settings updated with ip: ${IPAddress}`);
+            console.log(`Proxy settings updated with ip: ${IPAddress}`);
         }
     );
 }
@@ -35,20 +35,35 @@ function resetProxy() {
     );
 }
 
-
+const fetchURL = 'https://private-16d939-codingchallenge2020.apiary-mock.com/locations';
 const availableConnectionDiv = document.getElementById('available-connection-section');
-const button = document.createElement('button');
-button.innerText = 'RESET PROXY SETTINGS';
-button.addEventListener('click', () => {
-    setProxy('sdfs');
-})
-availableConnectionDiv.append(button);
 
-try {
-    fetch('https://private-16d939-codingchallenge2020.apiary-mock.com/locations').then(res => {
-        return res.text();
-    }).then(data => {
-        responseText = data;
+const resetButton = document.createElement('button');
+resetButton.innerText = 'RESET PROXY SETTINGS';
+resetButton.addEventListener('click', () => {
+    resetProxy();
+})
+resetButton.setAttribute('style', 'margin-bottom: 10px');
+availableConnectionDiv.append(resetButton);
+
+const refreshButton = document.createElement('button');
+refreshButton.innerText = 'REFETCH SERVER LIST';
+refreshButton.setAttribute('style', 'margin-bottom: 10px');
+refreshButton.addEventListener('click', () => {
+
+    fetchServerData(fetchURL);
+})
+
+availableConnectionDiv.append(refreshButton);
+
+
+
+
+const fetchServerData = (url) => fetchXMLData(url)
+    .then(responseText => {
+
+        console.log(responseText);
+
 
         const parse = new DOMParser();
         const xmlDoc = parse.parseFromString(responseText, 'text/xml');
@@ -67,18 +82,13 @@ try {
 
                 const ip = server.getAttribute('ip');
                 const serverIPDiv = document.createElement('li');
-
                 const button = document.createElement('button');
-
                 button.innerText = 'CONNECT';
-
                 button.addEventListener('click', () => {
-                    setProxy('sdfs');
+                    setProxy(ip);
 
                 })
-
-
-                serverIPDiv.innerText = ip
+                serverIPDiv.innerText = ip;
                 serverIPDiv.appendChild(button);
                 serverList.appendChild(serverIPDiv);
             }
@@ -86,8 +96,4 @@ try {
         }
     });
 
-
-} catch (err) {
-    // no -op
-
-}
+fetchServerData(fetchURL);
