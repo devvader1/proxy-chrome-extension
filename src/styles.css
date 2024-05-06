@@ -1,0 +1,25 @@
+.reset-button,
+.refresh-button,
+.connect-button {
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.reset-button:hover,
+.refresh-button:hover,
+.connect-button:hover {
+  background-color: #e0e0e0;
+}
+
+.reset-button:focus,
+.refresh-button:focus,
+.connect-button:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 1px #0066cc;
+}
