@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@types/chrome": "^0.0.267"
+  },
+  "scripts": {
+    "build": "tsc && cp ./src/hello.html ./dist/hello.html"
+  }
+}
