@@ -1,9 +1,9 @@
 # proxy-chrome-extension
 ### Final extension
-![alt text](https://raw.githubusercontent.com/devvader1/proxy-chrome-extension/main/finalExt.png)
+![alt text](https://raw.githubusercontent.com/devvader1/proxy-chrome-extension/main/public/finalExt.png)
 
 ### Hover over input on `http` site
 
 
-![alt text](https://raw.githubusercontent.com/devvader1/proxy-chrome-extension/main/unsecure.png)
+![alt text](https://raw.githubusercontent.com/devvader1/proxy-chrome-extension/main/public/unsecure.png)
 
