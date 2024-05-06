@@ -3,6 +3,6 @@
     "@types/chrome": "^0.0.267"
   },
   "scripts": {
-    "build": "tsc && cp ./src/hello.html ./dist/hello.html"
+    "build": "tsc && cp ./src/hello.html ./dist/hello.html && cp ./manifest.json ./dist/manifest.json"
   }
 }

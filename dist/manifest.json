@@ -7,7 +7,7 @@
   ],
   "description": "Base Level Extension",
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "background.js"
   },
   "host_permissions": [
     "http://*/*"
@@ -18,14 +18,14 @@
         "http://*/*"
       ],
       "js": [
-        "src/content.js"
+        "content.js"
       ]
     }
   ],
   "version": "1.0",
   "manifest_version": 3,
   "action": {
-    "default_popup": "src/hello.html",
-    "default_icon": "public/hello_extensions.png"
+    "default_popup": "hello.html",
+    "default_icon": "hello_extensions.png"
   }
 }
