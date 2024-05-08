@@ -1,8 +1,16 @@
 {
   "devDependencies": {
-    "@types/chrome": "^0.0.267"
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-typescript": "^7.24.1",
+    "@types/chrome": "^0.0.267",
+    "@types/jest": "^29.5.12",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.2.2"
   },
   "scripts": {
-    "build": "tsc && cp ./src/hello.html ./dist/hello.html && cp ./manifest.json ./dist/manifest.json"
+    "build": "tsc && cp ./src/hello.html ./dist/hello.html && cp ./manifest.json ./dist/manifest.json",
+    "test": "jest"
   }
 }

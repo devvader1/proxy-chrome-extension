@@ -1,28 +1,9 @@
-import { fetchXMLData } from "./fetchData";
-console.log("This is a popup!");
-
-function setProxy(IPAddress: string): void {
-  const config = {
-    mode: "fixed_servers",
-    rules: {
-      singleProxy: {
-        scheme: "socks5",
-        host: IPAddress,
-      },
-    },
-  };
-
-  chrome.proxy.settings.set({ value: config, scope: "regular" }, () => {
-    console.log(`Proxy settings updated with IP: ${IPAddress}`);
-  });
-}
-
-function resetProxy(): void {
-  const config = { mode: "system" };
-  chrome.proxy.settings.set({ value: config, scope: "regular" }, () => {
-    console.log("Proxy settings reset.");
-  });
-}
+import { fetchXMLData } from "./utils/fetchData";
+import {
+  resetProxy,
+  setProxy,
+  isValidIpAddress,
+} from "./utils/configureProxies";
 
 const fetchURL =
   "https://private-16d939-codingchallenge2020.apiary-mock.com/locations";
@@ -94,7 +75,7 @@ if (availableConnectionDiv && connectedLocationSection) {
 
           const button = createButton("CONNECT", "connect-button", () => {
             if (!connected) {
-              setProxy(ip);
+              if (isValidIpAddress(ip)) setProxy(ip);
             } else {
               resetProxy();
             }
