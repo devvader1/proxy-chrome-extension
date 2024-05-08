@@ -9,9 +9,9 @@
   "background": {
     "service_worker": "src/background.js"
   },
-  "host_permissions": [
-    "http://*/*"
-  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
   "content_scripts": [
     {
       "matches": [
